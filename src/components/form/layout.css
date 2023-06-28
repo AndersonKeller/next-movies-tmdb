@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  form {
+    @apply flex flex-col gap-4 h-max w-full max-w-md bg-gray-800 p-5 rounded-2xl;
+  }
+}

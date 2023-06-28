@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  button {
+    @apply p-2 uppercase font-bold rounded-3xl;
+  }
+  .red {
+    @apply bg-red-500;
+  }
+}
