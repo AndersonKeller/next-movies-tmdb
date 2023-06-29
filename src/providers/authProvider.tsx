@@ -11,6 +11,8 @@ interface authValues {
   validateWhitLogin: (LoginData: LoginData) => Promise<boolean>;
   sessionId: string;
   createGuest: () => void;
+  userName: string;
+  logout: () => void;
 }
 
 export const authContext = createContext<authValues>({} as authValues);
@@ -18,6 +20,7 @@ export const authContext = createContext<authValues>({} as authValues);
 export function AuthProvider({ children }: Props) {
   const [token, setToken] = useState("");
   const [sessionId, setSessionId] = useState("");
+  const [userName, setUsername] = useState("");
   const [guestSessionId, setGuestSessionId] = useState("");
   const cookies = parseCookies();
   async function getToken() {
@@ -44,6 +47,7 @@ export function AuthProvider({ children }: Props) {
       );
       console.log(res);
       createSession();
+      setUsername(userData.username);
       return true;
     } catch (error) {
       console.log(error);
@@ -54,6 +58,7 @@ export function AuthProvider({ children }: Props) {
     const sessionData = {
       request_token: token,
     };
+    console.log(sessionData);
     try {
       const res = await api.post("/authentication/session/new", sessionData);
       console.log(res);
@@ -85,9 +90,22 @@ export function AuthProvider({ children }: Props) {
       console.log(error);
     }
   }
+  async function logout() {
+    destroyCookie(null, "@next-movies-sessionid");
+    destroyCookie(null, "@next-movies-token");
+    setUsername("");
+    createGuest();
+  }
   return (
     <authContext.Provider
-      value={{ createGuest, sessionId, validateWhitLogin, getToken }}
+      value={{
+        logout,
+        userName,
+        createGuest,
+        sessionId,
+        validateWhitLogin,
+        getToken,
+      }}
     >
       {children}
     </authContext.Provider>

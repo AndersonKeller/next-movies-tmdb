@@ -1,9 +1,10 @@
-import Link from "next/link";
+"use client";
+import { Header } from "@/components/header/header";
 
 export default function Dashboard() {
   return (
-    <section>
-      dashboard<Link href={"/"}>Go to home</Link>
-    </section>
+    <main>
+      <Header />
+    </main>
   );
 }

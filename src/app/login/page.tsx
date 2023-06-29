@@ -49,9 +49,9 @@ export default function Login() {
         href="https://www.themoviedb.org/signup?language=pt-BR"
         target="_blank"
       >
-        Not account in TMDB? Go to register
+        Não possui conta da TMDB? Se cadastre
       </Link>
-      <Link href={"/"}>Continue whit a Guest</Link>
+      <Link href={"/"}>Continuar como visitante</Link>
     </div>
   );
 }
