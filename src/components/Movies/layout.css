@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+  .main-movies {
+    @apply flex flex-wrap justify-between pt-6 p-12 gap-8;
+  }
+  .movie-img {
+    @apply cursor-pointer rounded-movie;
+  }
+}
+.main-movies {
+  background-image: radial-gradient(
+    closest-side,
+    #141414 10%,
+    #333333 65%,
+    #530808 100%
+  );
+}

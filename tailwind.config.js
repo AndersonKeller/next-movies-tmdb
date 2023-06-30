@@ -17,6 +17,12 @@ module.exports = {
         800: "#333333",
         900: "#141414",
       },
+      borderRadius: {
+        movie: "86px 22px 86px 0",
+      },
+      fontFamily: {
+        roboto: "Roboto,sans-serif",
+      },
     },
   },
   plugins: [],

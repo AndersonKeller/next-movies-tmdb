@@ -3,7 +3,7 @@ interface Props {
   label: string;
   type?: "button" | "submit";
   color: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 export function Button({ label, type, color, onClick }: Props) {
   return (

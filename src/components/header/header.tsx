@@ -7,7 +7,7 @@ export function Header() {
   const { userName, logout } = useAuth();
   return (
     <header className="header">
-      <h1>Next - Movies</h1>
+      <h1 className="logo-name">Next - Movies</h1>
       <nav>
         <Link href={"/"}>Home</Link>
         <Link href={"/login"}>Login</Link>
