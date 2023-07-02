@@ -10,12 +10,12 @@
     @apply w-full h-full;
   }
   .div-movie-data {
-    @apply max-h-64 absolute bottom-0 w-full pl-12 pt-12 rounded-movie bg-gray-900 bg-opacity-50;
+    @apply max-h-72 absolute bottom-0 w-full pl-12 pt-12 rounded-movie bg-gray-900 bg-opacity-50;
   }
   .div-movie-data h3 {
     @apply text-2xl uppercase text-red-100 shadow-md font-bold;
   }
   .div-movie-data p {
-    @apply text-lg font-bold w-3/5;
+    @apply text-lg font-bold w-3/5 text-gray-100;
   }
 }

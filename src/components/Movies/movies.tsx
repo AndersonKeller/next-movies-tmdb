@@ -27,23 +27,26 @@ export function Movies() {
   }, []);
   return (
     <main className="main-movies">
+      <h2>Em Destaque</h2>
       <section>
         {movies.map((movie, index) => (
-          <div
-            id={movie.id.toString()}
-            className="div-img-movie"
-            key={movie.id}
-          >
-            <Image
-              priority={true}
-              className="movie-img"
+          <>
+            <div
+              id={movie.id.toString()}
+              className="div-img-movie"
               key={movie.id}
-              alt={movie.title}
-              width={400}
-              height={250}
-              src={"https://image.tmdb.org/t/p/w400/" + movie.poster_path}
-            />
-          </div>
+            >
+              <Image
+                priority={true}
+                className="movie-img"
+                key={movie.id}
+                alt={movie.title}
+                width={400}
+                height={250}
+                src={"https://image.tmdb.org/t/p/w400/" + movie.poster_path}
+              />
+            </div>
+          </>
         ))}
       </section>
     </main>

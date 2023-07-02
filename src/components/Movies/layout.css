@@ -3,7 +3,10 @@
 @tailwind utilities;
 @layer components {
   .main-movies {
-    @apply flex flex-wrap justify-between pb-9 gap-8;
+    @apply flex flex-wrap justify-between pb-9 gap-x-8;
+  }
+  .main-movies h2 {
+    @apply w-full px-12 pt-6;
   }
   .movie-img {
     @apply cursor-pointer rounded-md max-w-sm object-cover opacity-90;
@@ -11,8 +14,9 @@
   section {
     @apply flex p-12 overflow-auto justify-start gap-6 m-auto w-max;
   }
+
   .div-img-movie {
-    @apply relative w-96;
+    @apply relative w-96 hover:scale-105 transition-transform;
   }
 }
 .div-img-movie {

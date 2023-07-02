@@ -17,6 +17,11 @@ module.exports = {
         800: "#333333",
         900: "#141414",
       },
+      textColor: {
+        gray: {
+          100: "#E6E6E6",
+        },
+      },
       red: {
         100: "#481414",
       },
@@ -26,7 +31,7 @@ module.exports = {
         },
       },
       borderRadius: {
-        movie: "86px 22px 86px 0",
+        movie: "86px 22px 0 0",
       },
       fontFamily: {
         roboto: "Roboto,sans-serif",

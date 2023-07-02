@@ -2,6 +2,7 @@ import { AuthProvider } from "@/providers/authProvider";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Header } from "@/components/header/header";
+import { MoviesProvider } from "@/providers/moviesProvideer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <MoviesProvider>{children}</MoviesProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -14,6 +14,7 @@ export const api = async (
       language: "pt-BR",
     },
   };
+
   const res = await fetch(
     !lang
       ? `${axios.baseURL}${endpoint}?api_key=${axios.params.api_key}&language=${axios.params.language}`
@@ -21,6 +22,7 @@ export const api = async (
     {
       method: method,
       body: body,
+
       next: {
         revalidate: 30,
       },
