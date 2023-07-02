@@ -1,9 +1,11 @@
 "use client";
-import { Header } from "@/components/header/header";
+
 import { useAuth } from "@/providers/authProvider";
 import { useEffect } from "react";
 import { parseCookies } from "nookies";
 import { Movies } from "@/components/Movies/movies";
+import { Header } from "@/components/header/header";
+import { DestaqueMovie } from "@/components/DestaqueMovie/destaqueMovie";
 interface Props {
   children: React.ReactNode;
 }
@@ -21,6 +23,7 @@ export default function Home({ children }: Props) {
   return (
     <main>
       <Header />
+      <DestaqueMovie />
       <Movies />
       {children}
     </main>

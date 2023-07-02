@@ -1,17 +1,12 @@
+import { ButtonHTMLAttributes } from "react";
 import "./layout.css";
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
-  type?: "button" | "submit";
   color: string;
-  onClick?: () => void;
 }
-export function Button({ label, type, color, onClick }: Props) {
+export function Button({ label, color, ...rest }: Props) {
   return (
-    <button
-      type={type ? type : "button"}
-      className={color == "red" ? "red" : ""}
-      onClick={onClick}
-    >
+    <button className={color == "red" ? "red" : ""} {...rest}>
       {label}
     </button>
   );

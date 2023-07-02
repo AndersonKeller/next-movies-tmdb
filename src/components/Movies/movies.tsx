@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import { cache } from "react";
 
 export function Movies() {
-  const [movies, setMovies] = useState<MovieData[]>([] as MovieData[]);
+  const [movies, setMovies] = useState<MovieData[] | []>([] as MovieData[]);
+
   async function getMovies(): Promise<void> {
     try {
-      const res = await api.get("/discover/movie");
-      console.log(res.data.results);
-      setMovies(res.data.results);
+      const res = await api("GET", "/discover/movie");
+      console.log(res);
+      // console.log(res.data.results);
+      setMovies(res.results);
     } catch (error) {
       console.log(error);
     }
@@ -25,18 +27,25 @@ export function Movies() {
   }, []);
   return (
     <main className="main-movies">
-      {movies.map((movie) => (
-        <div className="div-img-movie">
-          <Image
-            className="movie-img"
+      <section>
+        {movies.map((movie, index) => (
+          <div
+            id={movie.id.toString()}
+            className="div-img-movie"
             key={movie.id}
-            alt={movie.title}
-            width={400}
-            height={600}
-            src={"https://image.tmdb.org/t/p/w400/" + movie.poster_path}
-          />
-        </div>
-      ))}
+          >
+            <Image
+              priority={true}
+              className="movie-img"
+              key={movie.id}
+              alt={movie.title}
+              width={400}
+              height={250}
+              src={"https://image.tmdb.org/t/p/w400/" + movie.poster_path}
+            />
+          </div>
+        ))}
+      </section>
     </main>
   );
 }

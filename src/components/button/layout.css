@@ -7,6 +7,6 @@
     @apply p-2 uppercase font-bold rounded-3xl;
   }
   .red {
-    @apply bg-red-500;
+    @apply bg-red-100;
   }
 }

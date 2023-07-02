@@ -2,7 +2,7 @@
 import { LoginData } from "@/schemas/user.schemas";
 import { api } from "@/services/api";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 interface Props {
   children: React.ReactNode;
 }
@@ -25,11 +25,9 @@ export function AuthProvider({ children }: Props) {
   const cookies = parseCookies();
   async function getToken() {
     try {
-      const res = await api.get("/authentication/token/new");
-      console.log(res);
-      setToken(res.data.request_token);
-      console.log(token);
-      setCookie(null, "@next-movies-token", res.data.request_token, {
+      const res = await api("GET", "/authentication/token/new");
+      setToken(res.request_token);
+      setCookie(null, "@next-movies-token", res.request_token, {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
       });
@@ -41,7 +39,8 @@ export function AuthProvider({ children }: Props) {
   async function validateWhitLogin(userData: LoginData) {
     userData.request_token = token;
     try {
-      const res = await api.post(
+      const res = await api(
+        "POST",
         "/authentication/token/validate_with_login",
         userData
       );
@@ -60,10 +59,10 @@ export function AuthProvider({ children }: Props) {
     };
     console.log(sessionData);
     try {
-      const res = await api.post("/authentication/session/new", sessionData);
+      const res = await api("POST", "/authentication/session/new", sessionData);
       console.log(res);
-      setSessionId(res.data.session_id);
-      setCookie(null, "@next-movies-sessionid", res.data.session_id, {
+      setSessionId(res.session_id);
+      setCookie(null, "@next-movies-sessionid", res.session_id, {
         maxAge: 30 * 24 * 60 * 60,
         path: "/",
       });
@@ -74,18 +73,13 @@ export function AuthProvider({ children }: Props) {
   }
   async function createGuest() {
     try {
-      const res = await api.get("/authentication/guest_session/new");
+      const res = await api("GET", "/authentication/guest_session/new");
       console.log(res);
-      setGuestSessionId(res.data.guest_session_id);
-      setCookie(
-        null,
-        "@next-movies-guest-sessionid",
-        res.data.guest_session_id,
-        {
-          maxAge: 30 * 24 * 60 * 60,
-          path: "/",
-        }
-      );
+      setGuestSessionId(res.guest_session_id);
+      setCookie(null, "@next-movies-guest-sessionid", res.guest_session_id, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
     } catch (error) {
       console.log(error);
     }

@@ -3,17 +3,33 @@
 @tailwind utilities;
 @layer components {
   .main-movies {
-    @apply flex flex-wrap justify-between pt-6 p-12 gap-8;
+    @apply flex flex-wrap justify-between pb-9 gap-8;
   }
   .movie-img {
-    @apply cursor-pointer rounded-movie;
+    @apply cursor-pointer rounded-md max-w-sm object-cover opacity-90;
+  }
+  section {
+    @apply flex p-12 overflow-auto justify-start gap-6 m-auto w-max;
+  }
+  .div-img-movie {
+    @apply relative w-96;
   }
 }
-.main-movies {
-  background-image: radial-gradient(
-    closest-side,
-    #141414 10%,
-    #333333 65%,
-    #530808 100%
-  );
+.div-img-movie {
+  box-shadow: inset 0 0 215px 105px #141414;
+}
+.movie-data {
+  transition: 3s height ease;
+}
+section::-webkit-scrollbar {
+  width: 1em;
+}
+
+section::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+section::-webkit-scrollbar-thumb {
+  background-color: #481414;
+  border-radius: 16px;
 }
