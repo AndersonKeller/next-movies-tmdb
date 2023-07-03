@@ -10,7 +10,7 @@
     @apply w-full h-full;
   }
   .div-movie-data {
-    @apply max-h-72 absolute bottom-0 w-full pl-12 pt-12 rounded-movie bg-gray-900 bg-opacity-50;
+    @apply max-h-72 absolute bottom-0 w-full pl-12 pt-12 rounded-movie bg-gray-900 bg-opacity-50 hover:h-max hover:max-h-max cursor-pointer;
   }
   .div-movie-data h3 {
     @apply text-2xl uppercase text-red-100 shadow-md font-bold;

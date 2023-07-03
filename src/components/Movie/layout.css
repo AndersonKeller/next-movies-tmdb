@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .genres-div {
+    @apply flex w-full gap-6 absolute top-0;
+  }
+  .genres-div p {
+    @apply py-3 px-6 text-zinc-300 font-bold bg-red-600 rounded-full hover:text-zinc-50 hover:font-semibold hover:bg-red-700;
+  }
+  .select-movie-main {
+    @apply w-full flex flex-col relative gap-5 overflow-hidden;
+  }
+  .select-movie-main .div-img-title-movie {
+    @apply flex w-full justify-between items-center relative mt-8;
+  }
+  .title-overview-movie {
+    @apply w-2/5;
+  }
+  .title-overview-movie h2 {
+    @apply font-bold text-xl uppercase py-2;
+  }
+  .img-drop-shadow {
+    @apply w-3/5 h-96;
+  }
+  .img-drop-shadow img {
+    @apply w-full h-full rounded-3xl  before:bg-black;
+  }
+}
+.img-drop-shadow img {
+  filter: drop-shadow(0px 0px 0.75rem crimson);
+}

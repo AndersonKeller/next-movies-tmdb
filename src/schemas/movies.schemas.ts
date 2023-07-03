@@ -15,4 +15,9 @@ export const movieSchema = z.object({
   vote_average: z.number(),
   vote_count: z.string(),
 });
+export const genreSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+});
 export type MovieData = z.infer<typeof movieSchema>;
+export type GenreData = z.infer<typeof genreSchema>;

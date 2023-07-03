@@ -1,52 +1,43 @@
-import { MovieData } from "@/schemas/movies.schemas";
 import "./layout.css";
-import { api } from "@/services/api";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { cache } from "react";
+import { useMovie } from "@/providers/moviesProvider";
+import { MovieData } from "@/schemas/movies.schemas";
 
-export function Movies() {
-  const [movies, setMovies] = useState<MovieData[] | []>([] as MovieData[]);
+import { useScroll } from "@/hooks/scrollHook";
 
-  async function getMovies(): Promise<void> {
-    try {
-      const res = await api("GET", "/discover/movie");
-      console.log(res);
-      // console.log(res.data.results);
-      setMovies(res.results);
-    } catch (error) {
-      console.log(error);
-    }
+interface Props {
+  movies: MovieData[];
+  title: string;
+}
+export function Movies({ movies, title }: Props) {
+  const { selectedMovie } = useMovie();
+
+  function selectMovie(movie: MovieData) {
+    selectedMovie(movie);
+
+    useScroll();
   }
-  const cachedMovies = cache(async () => {
-    const movies = await getMovies();
-    return movies;
-  });
-  useEffect(() => {
-    cachedMovies();
-  }, []);
   return (
     <main className="main-movies">
-      <h2>Em Destaque</h2>
+      <h2>{title}</h2>
       <section>
         {movies.map((movie, index) => (
-          <>
-            <div
-              id={movie.id.toString()}
-              className="div-img-movie"
+          <div
+            id={movie.id.toString()}
+            className="div-img-movie"
+            key={movie.id}
+            onClick={() => selectMovie(movie)}
+          >
+            <Image
+              priority={true}
+              className="movie-img"
               key={movie.id}
-            >
-              <Image
-                priority={true}
-                className="movie-img"
-                key={movie.id}
-                alt={movie.title}
-                width={400}
-                height={250}
-                src={"https://image.tmdb.org/t/p/w400/" + movie.poster_path}
-              />
-            </div>
-          </>
+              alt={movie.title}
+              width={400}
+              height={250}
+              src={"https://image.tmdb.org/t/p/w400/" + movie.poster_path}
+            />
+          </div>
         ))}
       </section>
     </main>

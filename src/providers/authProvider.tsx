@@ -22,7 +22,6 @@ export function AuthProvider({ children }: Props) {
   const [sessionId, setSessionId] = useState("");
   const [userName, setUsername] = useState("");
   const [guestSessionId, setGuestSessionId] = useState("");
-  const cookies = parseCookies();
   async function getToken() {
     try {
       const res = await api("GET", "/authentication/token/new");
